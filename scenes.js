@@ -357,7 +357,7 @@ class Menu extends Phaser.Scene {
 
     preload() {
         this.load.path = "./assets/";
-        this.load.image("title", "image/title.png");
+        this.load.image("title", "image/Title.png");
         this.load.image("sword", "image/sword.png");
         this.load.image("bg", "image/background.png");
     }    
