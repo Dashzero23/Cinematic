@@ -18,7 +18,7 @@ class UnderTale1 extends Phaser.Scene {
         undertale.setVolume(1);
         undertale.play();
         
-        let under1 = this.add.sprite(centerX, 200, "Under1");
+        let under1 = this.add.sprite(centerX, browserHeight / 3, "Under1");
         under1.alpha = 0;
         this.tweens.add({
           targets: under1,
@@ -26,7 +26,7 @@ class UnderTale1 extends Phaser.Scene {
           duration: 1000,
         });
 
-        let bub = this.add.sprite(800, 50, "bubble");
+        let bub = this.add.sprite(this.cameras.main.width * (74/100), browserHeight / 15, "bubble");
         bub.setScale(0.75);
         bub.alpha = 0;
         this.tweens.add({
@@ -35,7 +35,7 @@ class UnderTale1 extends Phaser.Scene {
           duration: 1000,
         });
       
-        let speech1 = this.add.text(805, 40, "I'm not bald,\nthe artist is lazy", {
+        let speech1 = this.add.text(this.cameras.main.width * 0.7453703704,  browserHeight / 15, "I'm not bald,\nthe artist is lazy", {
             fontFamily: "myFONT",
             fontSize: "28px",
             fill: "#000000",
@@ -49,7 +49,7 @@ class UnderTale1 extends Phaser.Scene {
           duration:3000,
         });
 
-        let text1 = this.add.text(centerX, 450, "", {
+        let text1 = this.add.text(centerX, browserHeight * 3/4, "", {
             fontFamily: "myFONT",
             fontSize: "48px",
             fill: "#ffffff",
@@ -103,7 +103,7 @@ class UnderTale2 extends Phaser.Scene {
         let centerX = this.cameras.main.width / 2;
         this.isAnimationFinished = false;
 
-        let under2 = this.add.sprite(centerX, 200, "Under2");
+        let under2 = this.add.sprite(centerX, browserHeight / 3, "Under2");
         under2.alpha = 0;
         this.tweens.add({
           targets: under2,
@@ -111,7 +111,7 @@ class UnderTale2 extends Phaser.Scene {
           duration: 1000,
         });
 
-        let text2 = this.add.text(centerX, 450, "", {
+        let text2 = this.add.text(centerX, browserHeight * 3/4, "", {
             fontFamily: "myFONT",
             fontSize: "48px",
             fill: "#ffffff",
@@ -164,7 +164,7 @@ class UnderTale3 extends Phaser.Scene {
         let centerX = this.cameras.main.width / 2;
         this.isAnimationFinished = false;
 
-        let under3 = this.add.sprite(centerX, 200, "Under3");
+        let under3 = this.add.sprite(centerX, browserHeight / 3, "Under3");
         under3.alpha = 0;
         this.tweens.add({
           targets: under3,
@@ -172,7 +172,7 @@ class UnderTale3 extends Phaser.Scene {
           duration: 1000,
         });
 
-        let bub = this.add.sprite(100, 520, "bubble");
+        let bub = this.add.sprite(browserWidth * (100/1080), browserHeight * (520/600), "bubble");
         bub.setScale(0.75);
         bub.alpha = 0;
         this.tweens.add({
@@ -181,13 +181,13 @@ class UnderTale3 extends Phaser.Scene {
           duration: 1000,
         });
       
-        let speech1 = this.add.text(100, 500, "Isn't this\nUndertale?", {
+        let speech1 = this.add.text(browserWidth * (100/1080), browserHeight * (500/600), "Isn't this\nUndertale?", {
             fontFamily: "myFONT",
             fontSize: "28px",
             fill: "#000000",
         }).setOrigin(0.5);
 
-        let text3 = this.add.text(centerX, 450, "", {
+        let text3 = this.add.text(centerX, browserHeight * 3/4, "", {
             fontFamily: "myFONT",
             fontSize: "48px",
             fill: "#ffffff",
@@ -357,7 +357,7 @@ class Menu extends Phaser.Scene {
 
     preload() {
         this.load.path = "./assets/";
-        this.load.image("title", "image/Title.png");
+        this.load.image("title", "image/title.png");
         this.load.image("sword", "image/sword.png");
         this.load.image("bg", "image/background.png");
     }    
@@ -366,32 +366,37 @@ class Menu extends Phaser.Scene {
         this.cameras.main.fadeIn(1000, 255, 255, 255);
         let bg = this.add.image(0, 0, 'bg').setOrigin(0);
 
+        // Set the scale to fit the entire screen
+        bg.setScale(game.config.width / bg.width, game.config.height / bg.height);
+        
         let rect1 = this.add.graphics();
         rect1.fillStyle(0x000000, 1);
-        rect1.fillRect(780, 510, 250, 60);
+        rect1.fillRect(browserWidth * (780/1080), browserHeight * (870/1080), browserWidth * (250/1080), browserHeight * (60/600));
 
         let rect2 = this.add.graphics();
         rect2.fillStyle(0x000000, 1);
-        rect2.fillRect(780, 400, 250, 60);
+        rect2.fillRect(browserWidth * (780/1080), browserHeight * (720/1080), browserWidth * (250/1080), browserHeight * (60/600));
 
         let rect3 = this.add.graphics();
         rect3.fillStyle(0x000000, 1);
-        rect3.fillRect(780, 290, 250, 60);
+        rect3.fillRect(browserWidth * (780/1080), browserHeight * (570/1080), browserWidth * (250/1080), browserHeight * (60/600));
 
-        let menu = this.add.text(900, 430, "PLAY\n\nSETTING\n\nNOT YET", {
+        let menu = this.add.text(browserWidth * (900/1080), browserHeight * (430/600), "PLAY\n\nSETTING\n\nNOT YET", {
             fontFamily: "myFONT",
             fontSize: "50px",
             fill: "#ffffff",
         }).setOrigin(0.5);
 
-        let title = this.add.sprite(870, 95, "title");
+        let title = this.add.sprite(browserWidth * (870/1080), browserHeight * (95/600), "title");
+        title.setScale(game.config.width / bg.width, game.config.height / bg.height);
 
-        let sword = this.add.image(-100, this.cameras.main.centerY, "sword");
+        let sword = this.add.image(browserWidth * (-100/1080), this.cameras.main.centerY, "sword");
+        sword.setScale(game.config.width / bg.width, game.config.height / bg.height);
 
         // Add a tween to move it to the center of the screen
         this.tweens.add({
             targets: sword,
-            x: 400,
+            x: browserWidth * (300/1080),
             duration: 1000, // duration in milliseconds
             ease: 'Power1',
         });
